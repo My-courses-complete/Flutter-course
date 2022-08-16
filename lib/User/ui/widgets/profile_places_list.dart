@@ -22,6 +22,7 @@ class ProfilePlacesList extends StatelessWidget {
         children: <Widget>[
           ProfilePlace('assets/img/paisaje1.jpg', place),
           ProfilePlace('assets/img/paisaje2.jpg', place2),
+          ProfilePlace('assets/img/paisaje3.jpg', place2),
         ],
       ),
     );
