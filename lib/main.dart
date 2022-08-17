@@ -1,4 +1,5 @@
 import 'package:basic_flutter/User/bloc/bloc_user.dart';
+import 'package:basic_flutter/User/ui/screens/sig_in_screen.dart';
 import 'package:basic_flutter/app_trips.dart';
 import 'package:basic_flutter/app_trips_cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       child: MaterialApp(
         title: 'Flutter Demo',
-        home: AppTripsCupertino()
+        home: SignInScreen()
+        // home: AppTripsCupertino()
       ),
       bloc: UserBloc()
     );
