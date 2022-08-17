@@ -4,13 +4,18 @@ import 'package:basic_flutter/app_trips_cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // transparent status bar
     )
+  );
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
 }
