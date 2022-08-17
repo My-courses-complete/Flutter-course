@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -25,7 +23,7 @@ class FirebaseAuthAPI {
 
   void signOut() async {
     await _auth.signOut().then((value) => print("Signed out"));
-    _googleSignIn.signOut();
+    await _googleSignIn.signOut();
     print("Sesiones cerradas");
   }
 }

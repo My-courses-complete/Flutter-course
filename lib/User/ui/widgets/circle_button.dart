@@ -5,8 +5,10 @@ class CircleButton extends StatefulWidget {
   final IconData icon;
   final double iconSize;
   final Color color;
+  final VoidCallback onPressed;
 
-  const CircleButton(this.mini, this.icon, this.iconSize, this.color,
+  const CircleButton(
+      this.mini, this.icon, this.iconSize, this.color, this.onPressed,
       {Key? key})
       : super(key: key);
 
@@ -15,21 +17,18 @@ class CircleButton extends StatefulWidget {
 }
 
 class _CircleButtonState extends State<CircleButton> {
-  void onPressedButton() {}
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: FloatingActionButton(
-        backgroundColor: widget.color,
-        mini: widget.mini,
-        onPressed: onPressedButton,
-        child: Icon(
-          widget.icon,
-          size: widget.iconSize,
-          color: Color(0xFF4268D3),
-        ),
-      )
-    );
+        child: FloatingActionButton(
+      backgroundColor: widget.color,
+      mini: widget.mini,
+      onPressed: widget.onPressed,
+      child: Icon(
+        widget.icon,
+        size: widget.iconSize,
+        color: Color(0xFF4268D3),
+      ),
+    ));
   }
 }
