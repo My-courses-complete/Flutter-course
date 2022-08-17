@@ -1,6 +1,9 @@
+import 'package:basic_flutter/User/bloc/bloc_user.dart';
 import 'package:basic_flutter/widgets/button_green.dart';
 import 'package:basic_flutter/widgets/gradient_back.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -10,8 +13,12 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+
+  late UserBloc userBloc;
+
   @override
   Widget build(BuildContext context) {
+    userBloc = BlocProvider.of(context);
     return SignInGoogleUI();
   }
 
@@ -33,7 +40,12 @@ class _SignInScreenState extends State<SignInScreen> {
                   color: Colors.white,
                   )
                 ),
-                ButtonGreen(text: "Login with Gmail", onPressed: () {}, height: 50.0, width: 300.0)
+                ButtonGreen(
+                  text: "Login with Gmail",
+                  onPressed: () => userBloc.signIn().then((UserCredential user) => print("El usuario es ${user.user?.email}")).catchError((error) => print("Error: $error")),
+                  height: 50.0,
+                  width: 300.0
+                )
             ],
           )
         ]
