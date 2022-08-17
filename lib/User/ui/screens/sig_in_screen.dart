@@ -1,3 +1,4 @@
+import 'package:basic_flutter/widgets/button_green.dart';
 import 'package:basic_flutter/widgets/gradient_back.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class _SignInScreenState extends State<SignInScreen> {
         children: <Widget>[
           GradientBack("", double.infinity),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
                 "Welcome", 
@@ -31,6 +33,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   color: Colors.white,
                   )
                 ),
+                ButtonGreen(text: "Login with Gmail", onPressed: () {}, height: 50.0, width: 300.0)
             ],
           )
         ]
