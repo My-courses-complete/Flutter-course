@@ -39,7 +39,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget SignInGoogleUI() {
     return Scaffold(
       body: Stack(alignment: Alignment.center, children: <Widget>[
-        GradientBack("", double.infinity),
+        GradientBack(height: null),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
