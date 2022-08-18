@@ -8,8 +8,20 @@ class ProfilePlacesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Place place = new Place("Montaña", "En una roca", "Phoyography", "123,123,123");
-    final Place place2 = new Place("Montaña", "En una roca", "Phoyography", "123,123,123");
+    final Place place = Place(
+      id: '1',
+      name: 'Place 1',
+      description: 'Description Place 1',
+      uriImage: 'assets/img/paisaje1.jpg',
+      likes: 0,
+    );
+    final Place place2 = Place(
+      id: '2',
+      name: 'Place 2',
+      description: 'Description Place 2',
+      uriImage: 'assets/img/paisaje2.jpg',
+      likes: 0,
+    );
 
     return Container(
       margin: EdgeInsets.only(
@@ -20,9 +32,9 @@ class ProfilePlacesList extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          ProfilePlace('assets/img/paisaje1.jpg', place),
-          ProfilePlace('assets/img/paisaje2.jpg', place2),
-          ProfilePlace('assets/img/paisaje3.jpg', place2),
+          ProfilePlace(place),
+          ProfilePlace(place2),
+          ProfilePlace(place2),
         ],
       ),
     );

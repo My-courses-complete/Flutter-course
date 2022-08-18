@@ -6,8 +6,8 @@ class User {
   final String name;
   final String email;
   final String photoUrl;
-  final List<Place> favoritePlaces;
-  final List<Place>  myPlaces;
+  final List<Place>? favoritePlaces;
+  final List<Place>?  myPlaces;
 
   User({
     Key? key,
@@ -15,7 +15,7 @@ class User {
     required this.name,
     required this.email,
     required this.photoUrl,
-    this.favoritePlaces = const [],
-    this.myPlaces = const [],
+    this.favoritePlaces,
+    this.myPlaces,
   });
 }

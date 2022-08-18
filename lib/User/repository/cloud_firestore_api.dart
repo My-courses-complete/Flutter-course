@@ -12,13 +12,14 @@ class CloudFirestoreAPI {
 
     DocumentReference ref = users.doc(user.uid);
 
-    // return ref.setData({
-    //   'uid': user.uid,
-    //   'name': user.name,
-    //   'email': user.email,
-    //   'photoUrl': user.photoUrl,
-    //   'myPlaces': user.myPlaces,
-    //   'favoritePlaces': user.favoritePlaces,
-    // }, merge: true);
+    return ref.set({
+      'uid': user.uid,
+      'name': user.name,
+      'email': user.email,
+      'photoUrl': user.photoUrl,
+      'myPlaces': user.myPlaces,
+      'favoritePlaces': user.favoritePlaces,
+      'lastSignIn': DateTime.now(),
+    }, SetOptions(merge: true));
   }
 }

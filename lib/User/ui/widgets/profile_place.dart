@@ -3,10 +3,9 @@ import 'package:basic_flutter/User/ui/widgets/profile_place_info.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePlace extends StatelessWidget {
-  final String image;
   final Place place;
 
-  const ProfilePlace(this.image, this.place, {Key? key}) : super(key: key);
+  const ProfilePlace(this.place, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class ProfilePlace extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(image),
+          image: AssetImage(place.uriImage),
         ),
         borderRadius: BorderRadius.all(Radius.circular(20.0)),
         color: Colors.red,
