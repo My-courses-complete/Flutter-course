@@ -43,13 +43,20 @@ class _SignInScreenState extends State<SignInScreen> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Welcome",
+            Flexible(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                child: Text("Welcome",
                 style: TextStyle(
                   fontSize: 37.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: "Lato",
                   color: Colors.white,
-                )),
+                  )
+                ),
+              )
+            ),
+            
             ButtonGreen(
               text: "Login with Gmail",
               onPressed: () => userBloc.signIn().then((UserCredential user) {
