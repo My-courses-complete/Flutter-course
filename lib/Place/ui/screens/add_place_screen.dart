@@ -2,11 +2,12 @@ import 'package:basic_flutter/Place/model/place.dart';
 import 'package:basic_flutter/Place/ui/widgets/card_image.dart';
 import 'package:basic_flutter/Place/ui/widgets/title_input_location.dart';
 import 'package:basic_flutter/User/bloc/bloc_user.dart';
-import 'package:basic_flutter/User/model/user.dart';
+import 'package:basic_flutter/User/model/user.dart' as Model;
 import 'package:basic_flutter/widgets/button_purple.dart';
 import 'package:basic_flutter/widgets/gradient_back.dart';
 import 'package:basic_flutter/widgets/text_input.dart';
 import 'package:basic_flutter/widgets/title_header.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:image_picker/image_picker.dart';
@@ -82,19 +83,26 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     child: ButtonPurple(
                       buttonText: "Add Place",
                       onPressed: () {
-                        userBloc.updatePlaceData(Place(
+                        User user = userBloc.currentUser;
+                        if (user == null) {
+                          return;
+                        }
+                
+                        userBloc
+                            .updatePlaceData(Place(
                           name: _controllerTitlePlace.text,
                           description: _controllerDescriptionPlace.text,
                           likes: 0,
                           uriImage: widget.image.path,
                           id: "1",
-                          userOwner: User(
+                          userOwner: Model.User(
                             uid: "1",
                             name: "User 1",
                             email: "sc",
                             photoUrl: "assets/img/paisaje1.jpg",
                           ),
-                        )).whenComplete(() {
+                        ))
+                            .whenComplete(() {
                           print("Termino");
                           Navigator.pop(context);
                         });
