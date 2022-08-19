@@ -1,5 +1,6 @@
 import 'package:basic_flutter/Place/model/place.dart';
 import 'package:basic_flutter/User/model/user.dart' as Model;
+import 'package:basic_flutter/User/ui/widgets/profile_place.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -39,13 +40,34 @@ class CloudFirestoreAPI {
       dr.get().then((DocumentSnapshot snapshot) {
         DocumentReference refUsers = _db.collection(USERS).doc(uid);
         refUsers.update({
-          'myPlaces': FieldValue.arrayUnion([_db.doc("$PLACES/${snapshot.id}")]),
+          'myPlaces':
+              FieldValue.arrayUnion([_db.doc("$PLACES/${snapshot.id}")]),
         });
       });
     });
   }
 
   Stream<QuerySnapshot> placesListStream() {
-    return _db.collection(PLACES).where('userOwner', isEqualTo: _db.collection(USERS).doc(_auth.currentUser?.uid)).snapshots();
+    return _db
+        .collection(PLACES)
+        .where('userOwner',
+            isEqualTo: _db.collection(USERS).doc(_auth.currentUser?.uid))
+        .snapshots();
+  }
+
+  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {
+    List<ProfilePlace> profilePlaces = <ProfilePlace>[];
+    placesListSnapshot.forEach((p) {
+      profilePlaces.add(ProfilePlace(
+        Place(
+          name: p['name'],
+          description: p['description'],
+          uriImage: p['urlImage'],
+          likes: p['likes'],
+          id: '',
+        ),
+      ));
+    });
+    return profilePlaces;
   }
 }
