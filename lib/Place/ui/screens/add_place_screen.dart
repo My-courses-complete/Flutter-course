@@ -1,3 +1,4 @@
+import 'package:basic_flutter/Place/ui/widgets/title_input_location.dart';
 import 'package:basic_flutter/widgets/gradient_back.dart';
 import 'package:basic_flutter/widgets/text_input.dart';
 import 'package:basic_flutter/widgets/title_header.dart';
@@ -20,6 +21,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   Widget build(BuildContext context) {
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
+    final _controllerLocationPlace = TextEditingController();
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -78,8 +80,13 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     controller: _controllerTitlePlace,
                   )
                 ),
-                TextInput(hintText: "Description", inputType: TextInputType.multiline, controller: _controllerDescriptionPlace),
-                
+                TextInput(hintText: "Description", inputType: TextInputType.multiline, controller: _controllerDescriptionPlace, maxLines: 5),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 20,
+                  ),
+                  child: TextInputLocation(hintText: "Add Location", controller: _controllerLocationPlace, icon: Icons.location_on_outlined)
+                )
               ],
             )
           )
