@@ -50,8 +50,6 @@ class CloudFirestoreAPI {
   Stream<QuerySnapshot> placesListStream() {
     return _db
         .collection(PLACES)
-        .where('userOwner',
-            isEqualTo: _db.collection(USERS).doc(_auth.currentUser?.uid))
         .snapshots();
   }
 
@@ -69,5 +67,12 @@ class CloudFirestoreAPI {
       ));
     });
     return profilePlaces;
+  }
+
+  Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) {
+    return _db
+        .collection(PLACES)
+        .where('userOwner', isEqualTo: _db.doc('$USERS/$uid'))
+        .snapshots();
   }
 }

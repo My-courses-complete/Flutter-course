@@ -10,4 +10,5 @@ class CloudFirestoreRepository {
   Future<void> updatePlaceDataFirestore(Place place) async => _cloudFirestoreAPI.updatePlaceData(place);
   Stream<QuerySnapshot> placesListStream() => _cloudFirestoreAPI.placesListStream();
   List<ProfilePlace> buildPlaces(List<DocumentSnapshot> querySnapshot) => _cloudFirestoreAPI.buildPlaces(querySnapshot);
+  Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) => _cloudFirestoreAPI.getPlacesListStreamByUserId(uid);
 }

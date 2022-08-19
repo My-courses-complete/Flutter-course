@@ -27,6 +27,7 @@ class UserBloc extends Bloc {
   Future<void> updatePlaceData(Place place) => _cloudFirestoreRepository.updatePlaceDataFirestore(place);
   Stream<QuerySnapshot> placesListStream() => _cloudFirestoreRepository.placesListStream();
   List<ProfilePlace> buildPlaces(List<DocumentSnapshot> querySnapshot) => _cloudFirestoreRepository.buildPlaces(querySnapshot);
+  Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) => _cloudFirestoreRepository.getPlacesListStreamByUserId(uid);
 
   final _firebaseStorageARepository = FirebaseStorageRepository();
   Future<UploadTask> uploadFile(String path, File image) => _firebaseStorageARepository.uploadFile(path, image);
