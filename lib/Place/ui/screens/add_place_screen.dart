@@ -74,7 +74,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               children: <Widget>[
                 Container(
                   alignment: Alignment.center,
-
                   child: CardImageWithFabIcon(
                     pathImage: widget.image?.file.path ?? "assets/img/paisaje1.jpg",
                     height: 250.0,
@@ -88,6 +87,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.only(
+                    top: 20,
                     bottom: 20,
                   ),
                   child: TextInput(
