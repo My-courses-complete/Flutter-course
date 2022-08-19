@@ -1,3 +1,4 @@
+import 'package:basic_flutter/Place/ui/widgets/card_image.dart';
 import 'package:basic_flutter/Place/ui/widgets/title_input_location.dart';
 import 'package:basic_flutter/widgets/gradient_back.dart';
 import 'package:basic_flutter/widgets/text_input.dart';
@@ -64,12 +65,27 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
           ),
           Container(
             margin: EdgeInsets.only(
-              top: 120,
-              bottom: 20,
+              top: 20,
+            ),
+            padding: EdgeInsets.only(
+              bottom: 20
             ),
             child: ListView(
               children: <Widget>[
-                Container(),
+                Container(
+                  alignment: Alignment.center,
+
+                  child: CardImageWithFabIcon(
+                    pathImage: widget.image?.file.path ?? "assets/img/paisaje1.jpg",
+                    height: 250.0,
+                    width: 350.0,
+                    left: 0,
+                    onPress: () {
+                      Navigator.pushNamed(context, "image_viewer");
+                    },
+                    iconData: Icons.add_a_photo,
+                  )
+                ),
                 Container(
                   margin: EdgeInsets.only(
                     bottom: 20,

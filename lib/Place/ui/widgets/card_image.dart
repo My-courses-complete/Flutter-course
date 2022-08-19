@@ -1,20 +1,33 @@
 import 'package:basic_flutter/widgets/floating_action_button_green.dart';
 import 'package:flutter/material.dart';
 
-class CardImage extends StatelessWidget {
+class CardImageWithFabIcon extends StatelessWidget {
   final String pathImage;
+  final double height;
+  final double width;
+  double left;
+  final VoidCallback onPress;
+  final IconData iconData;
 
-  const CardImage(this.pathImage, {Key? key}) : super(key: key);
+  CardImageWithFabIcon({
+    Key? key,
+    required this.pathImage,
+    required this.height,
+    required this.width,
+    this.left = 20,
+    required this.onPress,
+    required this.iconData,
+  }) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     final card = Container(
-      height: 350.0,
-      width: 250.0,
+      height: height,
+      width: width,
       margin: EdgeInsets.only(
         top: 80.0,
-        left: 20.0,
+        left: left,
       ),
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -37,7 +50,7 @@ class CardImage extends StatelessWidget {
       alignment: Alignment(0.9, 1.1),
       children: <Widget>[
         card,
-        FloatingActionButtonGreen()
+        FloatingActionButtonGreen(icon: iconData, onPressed: onPress),
       ],
     );
   }
