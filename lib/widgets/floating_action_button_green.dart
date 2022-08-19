@@ -26,6 +26,7 @@ class _FloatingActionButtonGreenState extends State<FloatingActionButtonGreen> {
       child: Icon(
         !_pressed ? Icons.favorite_border : Icons.favorite,
       ),
+      heroTag: null,
     );
   }
 }
