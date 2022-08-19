@@ -29,13 +29,19 @@ class CloudFirestoreAPI {
   Future<void> updatePlaceData(Place place) async {
     CollectionReference places = _db.collection(PLACES);
     String uid = (await _auth.currentUser!).uid;
-    DocumentReference ref = places.doc(place.id);
-    return ref.set({
+    return places.add({
       'name': place.name,
       'description': place.description,
       'urlImage': place.uriImage,
       'likes': place.likes,
-      'userOwner': "$USERS/$uid",
-    }, SetOptions(merge: true));
+      'userOwner': _db.doc('$USERS/$uid'),
+    }).then((DocumentReference dr) {
+      dr.get().then((DocumentSnapshot snapshot) {
+        DocumentReference refUsers = _db.collection(USERS).doc(uid);
+        refUsers.update({
+          'myPlaces': FieldValue.arrayUnion([_db.doc("$PLACES/${snapshot.id}")]),
+        });
+      });
+    });
   }
 }
