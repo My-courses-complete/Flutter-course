@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:basic_flutter/Place/model/place.dart';
 import 'package:basic_flutter/Place/ui/widgets/card_image.dart';
 import 'package:basic_flutter/Place/ui/widgets/title_input_location.dart';
@@ -8,6 +9,7 @@ import 'package:basic_flutter/widgets/gradient_back.dart';
 import 'package:basic_flutter/widgets/text_input.dart';
 import 'package:basic_flutter/widgets/title_header.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:image_picker/image_picker.dart';
@@ -87,24 +89,34 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                         if (user == null) {
                           return;
                         }
-                
                         userBloc
-                            .updatePlaceData(Place(
-                          name: _controllerTitlePlace.text,
-                          description: _controllerDescriptionPlace.text,
-                          likes: 0,
-                          uriImage: widget.image.path,
-                          id: "1",
-                          userOwner: Model.User(
-                            uid: "1",
-                            name: "User 1",
-                            email: "sc",
-                            photoUrl: "assets/img/paisaje1.jpg",
-                          ),
-                        ))
-                            .whenComplete(() {
-                          print("Termino");
-                          Navigator.pop(context);
+                            .uploadFile(
+                                "${user.uid}/${DateTime.now().toString()}.jpg",
+                                File(widget.image.path))
+                            .then((UploadTask uploadTask) {
+                          uploadTask.then((TaskSnapshot snapshot) {
+                            snapshot.ref.getDownloadURL().then((urlImage) {
+                              print("Urlimage: $urlImage");
+                              userBloc
+                                .updatePlaceData(Place(
+                                  name: _controllerTitlePlace.text,
+                                  description: _controllerDescriptionPlace.text,
+                                  likes: 0,
+                                  uriImage: urlImage,
+                                  id: "1",
+                                  userOwner: Model.User(
+                                    uid: "1",
+                                    name: "User 1",
+                                    email: "sc",
+                                    photoUrl: "assets/img/paisaje1.jpg",
+                                  ),
+                                ))
+                                .whenComplete(() {
+                                  print("Termino");
+                                  Navigator.pop(context);
+                                });
+                            });
+                          });
                         });
                       },
                     ),
