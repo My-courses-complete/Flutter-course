@@ -64,7 +64,7 @@ class CloudFirestoreAPI {
           description: p['description'],
           uriImage: p['urlImage'],
           likes: p['likes'],
-          id: '',
+          id: p.id,
         ),
       ));
     });

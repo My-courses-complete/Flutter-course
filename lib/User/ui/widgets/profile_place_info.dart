@@ -27,15 +27,7 @@ class ProfilePlaceInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            this.place.description,
-            style: TextStyle(
-              fontFamily: "Lato",
-              fontSize: 16.0,
-              color: Color.fromRGBO(0, 0, 0, 0.4),
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          place,
           Text(
             this.place.description,
             style: TextStyle(
@@ -81,7 +73,6 @@ class ProfilePlaceInfo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            place,
             placeInfo,
             steps,
           ],

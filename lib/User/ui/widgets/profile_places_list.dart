@@ -11,21 +11,6 @@ class ProfilePlacesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
-    final Place place = Place(
-      id: '1',
-      name: 'Place 1',
-      description: 'Description Place 1',
-      uriImage: 'assets/img/paisaje1.jpg',
-      likes: 0,
-    );
-    final Place place2 = Place(
-      id: '2',
-      name: 'Place 2',
-      description: 'Description Place 2',
-      uriImage: 'assets/img/paisaje2.jpg',
-      likes: 0,
-    );
-
     return Container(
         margin: EdgeInsets.only(
           top: 10.0,
@@ -43,7 +28,11 @@ class ProfilePlacesList extends StatelessWidget {
               case ConnectionState.waiting:
                 return CircularProgressIndicator();
               case ConnectionState.done:
-                return Column(children: userBloc.buildPlaces(snapshot.data.documents));
+                return Column(children: userBloc.buildPlaces(snapshot.data.docs));
+              case ConnectionState.active:
+                return Column(children: userBloc.buildPlaces(snapshot.data.docs));
+              case ConnectionState.none:
+                return CircularProgressIndicator();
               default:
                 return CircularProgressIndicator();
             }
