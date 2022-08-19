@@ -1,3 +1,4 @@
+import 'package:basic_flutter/Place/model/place.dart';
 import 'package:basic_flutter/User/model/user.dart' as Model;
 import 'package:basic_flutter/User/repository/auth_repository.dart';
 import 'package:basic_flutter/User/repository/cloud_firestore_repository.dart';
@@ -16,6 +17,8 @@ class UserBloc extends Bloc {
 
   final _cloudFirestoreRepository = CloudFirestoreRepository();
   void updateUserData(Model.User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
+
+  Future<void> updatePlaceData(Place place) => _cloudFirestoreRepository.updatePlaceDataFirestore(place);
 
   signOut() {
     _auth_repository.signOut();
