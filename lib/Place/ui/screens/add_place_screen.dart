@@ -104,12 +104,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                                   likes: 0,
                                   uriImage: urlImage,
                                   id: "1",
-                                  userOwner: Model.User(
-                                    uid: "1",
-                                    name: "User 1",
-                                    email: "sc",
-                                    photoUrl: "assets/img/paisaje1.jpg",
-                                  ),
                                 ))
                                 .whenComplete(() {
                                   print("Termino");
