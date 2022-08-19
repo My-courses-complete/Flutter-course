@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ButtonPurple extends StatelessWidget {
-  const ButtonPurple({Key? key}) : super(key: key);
+  final String buttonText;
+  final VoidCallback onPressed;
+
+  const ButtonPurple({
+    Key? key,
+    required this.buttonText,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +19,7 @@ class ButtonPurple extends StatelessWidget {
         right: 20.0,
       ),
       child: InkWell(
-        onTap: () => {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("Pulsado"),
-            ),
-          ),
-        },
+        onTap: onPressed,
         child: Container(
           height: 50.0,
           width: 180.0,
@@ -37,7 +38,7 @@ class ButtonPurple extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              "Navigate",
+              buttonText,
               style: TextStyle(
                 fontSize: 18.0,
                 fontFamily: 'Lato',

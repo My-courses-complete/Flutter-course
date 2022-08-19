@@ -1,5 +1,6 @@
 import 'package:basic_flutter/Place/ui/widgets/card_image.dart';
 import 'package:basic_flutter/Place/ui/widgets/title_input_location.dart';
+import 'package:basic_flutter/widgets/button_purple.dart';
 import 'package:basic_flutter/widgets/gradient_back.dart';
 import 'package:basic_flutter/widgets/text_input.dart';
 import 'package:basic_flutter/widgets/title_header.dart';
@@ -27,42 +28,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
       body: Stack(
         children: <Widget>[
           GradientBack(height: 300),
-          Row(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(
-                  top: 25.0,
-                  left: 20,
-                ),
-                child: SizedBox(
-                  height: 45.0,
-                  width: 45.0,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.keyboard_arrow_left,
-                      color: Colors.white,
-                      size: 45,
-                    ),
-                    onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  ),
-                ),
-              ),
-              Flexible(
-                child: Container(
-                  padding: EdgeInsets.only(
-                    top: 45.0,
-                    left: 20,
-                    right: 10,
-                  ),
-                  child: TitleHeader(
-                    title: "Add a new place",
-                  ),
-                ),
-              ),
-            ],
-          ),
           Container(
             margin: EdgeInsets.only(
               top: 20,
@@ -79,9 +44,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     height: 250.0,
                     width: 350.0,
                     left: 0,
-                    onPress: () {
-                      Navigator.pushNamed(context, "image_viewer");
-                    },
+                    onPress: () {},
                     iconData: Icons.add_a_photo,
                   )
                 ),
@@ -102,10 +65,58 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     top: 20,
                   ),
                   child: TextInputLocation(hintText: "Add Location", controller: _controllerLocationPlace, icon: Icons.location_on_outlined)
-                )
+                ),
+                Container(
+                  width: 70,
+                  margin: EdgeInsets.only(
+                    top: 20,
+                  ),
+                  child: ButtonPurple(
+                    buttonText: "Add Place",
+                    onPressed: () {
+                      print("Add Place");
+                    },
+                  ),
+                ),
               ],
             )
-          )
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(
+                  top: 25.0,
+                  left: 20,
+                ),
+                child: SizedBox(
+                  height: 45.0,
+                  width: 45.0,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.keyboard_arrow_left,
+                      color: Colors.white,
+                      size: 45,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ),
+              Flexible(
+                child: Container(
+                  padding: EdgeInsets.only(
+                    top: 45.0,
+                    left: 20,
+                    right: 10,
+                  ),
+                  child: TitleHeader(
+                    title: "Add a new place",
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
