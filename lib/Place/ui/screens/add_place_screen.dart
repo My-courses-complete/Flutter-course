@@ -9,13 +9,14 @@ import 'package:basic_flutter/widgets/text_input.dart';
 import 'package:basic_flutter/widgets/title_header.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddPlaceScreen extends StatefulWidget {
-  FileImage? image;
+  XFile image;
 
   AddPlaceScreen({
     Key? key,
-    this.image,
+    required this.image,
   }) : super(key: key);
 
   @override
@@ -43,8 +44,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                   Container(
                       alignment: Alignment.center,
                       child: CardImageWithFabIcon(
-                        pathImage: widget.image?.file.path ??
-                            "assets/img/paisaje1.jpg",
+                        pathImage: widget.image.path,
                         height: 250.0,
                         width: 350.0,
                         left: 0,
@@ -86,8 +86,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                           name: _controllerTitlePlace.text,
                           description: _controllerDescriptionPlace.text,
                           likes: 0,
-                          uriImage: widget.image?.file.path ??
-                              "assets/img/paisaje1.jpg",
+                          uriImage: widget.image.path,
                           id: "1",
                           userOwner: User(
                             uid: "1",
