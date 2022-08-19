@@ -1,4 +1,5 @@
 import 'package:basic_flutter/Place/model/place.dart';
+import 'package:basic_flutter/User/model/user.dart';
 import 'package:basic_flutter/User/ui/widgets/profile_place.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,12 @@ class ProfilePlacesList extends StatelessWidget {
       description: 'Description Place 1',
       uriImage: 'assets/img/paisaje1.jpg',
       likes: 0,
+      userOwner: User(
+        uid: '1',
+        name: 'User 1',
+        email: 'sc',
+        photoUrl: 'assets/img/paisaje1.jpg',
+      )
     );
     final Place place2 = Place(
       id: '2',
@@ -21,6 +28,12 @@ class ProfilePlacesList extends StatelessWidget {
       description: 'Description Place 2',
       uriImage: 'assets/img/paisaje2.jpg',
       likes: 0,
+      userOwner: User(
+        uid: '1',
+        name: 'User 1',
+        email: 'sc',
+        photoUrl: 'assets/img/paisaje1.jpg',
+      )
     );
 
     return Container(
