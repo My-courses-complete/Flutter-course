@@ -6,9 +6,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CloudFirestoreRepository {
   final _cloudFirestoreAPI = CloudFirestoreAPI();
-  void updateUserDataFirestore(User user) async => _cloudFirestoreAPI.updateUserData(user);
-  Future<void> updatePlaceDataFirestore(Place place) async => _cloudFirestoreAPI.updatePlaceData(place);
-  Stream<QuerySnapshot> placesListStream() => _cloudFirestoreAPI.placesListStream();
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> querySnapshot) => _cloudFirestoreAPI.buildPlaces(querySnapshot);
-  Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) => _cloudFirestoreAPI.getPlacesListStreamByUserId(uid);
+  void updateUserDataFirestore(User user) async =>
+      _cloudFirestoreAPI.updateUserData(user);
+  Future<void> updatePlaceDataFirestore(Place place) async =>
+      _cloudFirestoreAPI.updatePlaceData(place);
+  Stream<QuerySnapshot> placesListStream() =>
+      _cloudFirestoreAPI.placesListStream();
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> querySnapshot) =>
+      _cloudFirestoreAPI.buildMyPlaces(querySnapshot);
+  Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) =>
+      _cloudFirestoreAPI.getPlacesListStreamByUserId(uid);
 }

@@ -1,9 +1,11 @@
 import 'package:basic_flutter/Place/model/place.dart';
+import 'package:basic_flutter/Place/ui/widgets/card_image.dart';
 import 'package:basic_flutter/User/model/user.dart' as Model;
 import 'package:basic_flutter/User/ui/widgets/profile_place.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 
 class CloudFirestoreAPI {
   final String USERS = 'users';
@@ -48,12 +50,10 @@ class CloudFirestoreAPI {
   }
 
   Stream<QuerySnapshot> placesListStream() {
-    return _db
-        .collection(PLACES)
-        .snapshots();
+    return _db.collection(PLACES).snapshots();
   }
 
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) {
     List<ProfilePlace> profilePlaces = <ProfilePlace>[];
     placesListSnapshot.forEach((p) {
       profilePlaces.add(ProfilePlace(
@@ -74,5 +74,19 @@ class CloudFirestoreAPI {
         .collection(PLACES)
         .where('userOwner', isEqualTo: _db.doc('$USERS/$uid'))
         .snapshots();
+  }
+
+  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {
+    List<CardImageWithFabIcon> placesCard = <CardImageWithFabIcon>[];
+    placesListSnapshot.forEach((p) {
+      placesCard.add(CardImageWithFabIcon(
+        pathImage: p['urlImage'],
+        height: 200.0,
+        width: 300.0,
+        onPress: () {},
+        iconData: Icons.favorite_border,
+      ));
+    });
+    return placesCard;
   }
 }

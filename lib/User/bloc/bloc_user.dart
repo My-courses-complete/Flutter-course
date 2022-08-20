@@ -23,14 +23,20 @@ class UserBloc extends Bloc {
   }
 
   final _cloudFirestoreRepository = CloudFirestoreRepository();
-  void updateUserData(Model.User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
-  Future<void> updatePlaceData(Place place) => _cloudFirestoreRepository.updatePlaceDataFirestore(place);
-  Stream<QuerySnapshot> placesListStream() => _cloudFirestoreRepository.placesListStream();
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> querySnapshot) => _cloudFirestoreRepository.buildPlaces(querySnapshot);
-  Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) => _cloudFirestoreRepository.getPlacesListStreamByUserId(uid);
+  void updateUserData(Model.User user) =>
+      _cloudFirestoreRepository.updateUserDataFirestore(user);
+  Future<void> updatePlaceData(Place place) =>
+      _cloudFirestoreRepository.updatePlaceDataFirestore(place);
+  Stream<QuerySnapshot> placesListStream() =>
+      _cloudFirestoreRepository.placesListStream();
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> querySnapshot) =>
+      _cloudFirestoreRepository.buildMyPlaces(querySnapshot);
+  Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) =>
+      _cloudFirestoreRepository.getPlacesListStreamByUserId(uid);
 
   final _firebaseStorageARepository = FirebaseStorageRepository();
-  Future<UploadTask> uploadFile(String path, File image) => _firebaseStorageARepository.uploadFile(path, image);
+  Future<UploadTask> uploadFile(String path, File image) =>
+      _firebaseStorageARepository.uploadFile(path, image);
 
   signOut() {
     _auth_repository.signOut();
