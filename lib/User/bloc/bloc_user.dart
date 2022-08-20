@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:basic_flutter/Place/model/place.dart';
 import 'package:basic_flutter/Place/repository/firebase_storage_repository.dart';
+import 'package:basic_flutter/Place/ui/widgets/card_image.dart';
 import 'package:basic_flutter/User/model/user.dart' as Model;
 import 'package:basic_flutter/User/repository/auth_repository.dart';
 import 'package:basic_flutter/User/repository/cloud_firestore_repository.dart';
@@ -29,6 +30,9 @@ class UserBloc extends Bloc {
       _cloudFirestoreRepository.updatePlaceDataFirestore(place);
   Stream<QuerySnapshot> placesListStream() =>
       _cloudFirestoreRepository.placesListStream();
+  List<CardImageWithFabIcon> buildPlaces(
+          List<DocumentSnapshot> placesListSnapshot) =>
+      _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
   List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> querySnapshot) =>
       _cloudFirestoreRepository.buildMyPlaces(querySnapshot);
   Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) =>

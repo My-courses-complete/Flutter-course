@@ -1,4 +1,5 @@
 import 'package:basic_flutter/Place/model/place.dart';
+import 'package:basic_flutter/Place/ui/widgets/card_image.dart';
 import 'package:basic_flutter/User/model/user.dart';
 import 'package:basic_flutter/User/repository/cloud_firestore_api.dart';
 import 'package:basic_flutter/User/ui/widgets/profile_place.dart';
@@ -16,4 +17,6 @@ class CloudFirestoreRepository {
       _cloudFirestoreAPI.buildMyPlaces(querySnapshot);
   Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) =>
       _cloudFirestoreAPI.getPlacesListStreamByUserId(uid);
+  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
+      _cloudFirestoreAPI.buildPlaces(placesListSnapshot);
 }
