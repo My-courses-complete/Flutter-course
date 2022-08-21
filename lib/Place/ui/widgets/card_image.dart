@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'package:basic_flutter/widgets/floating_action_button_green.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CardImageWithFabIcon extends StatelessWidget {
@@ -9,6 +9,7 @@ class CardImageWithFabIcon extends StatelessWidget {
   double left;
   final VoidCallback onPress;
   final IconData iconData;
+  bool internet;
 
   CardImageWithFabIcon({
     Key? key,
@@ -18,6 +19,7 @@ class CardImageWithFabIcon extends StatelessWidget {
     this.left = 20,
     required this.onPress,
     required this.iconData,
+    this.internet = true,
   }) : super(key: key);
 
 
@@ -33,7 +35,7 @@ class CardImageWithFabIcon extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(pathImage),
+          image: CachedNetworkImageProvider(pathImage)
         ),
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         shape: BoxShape.rectangle,
