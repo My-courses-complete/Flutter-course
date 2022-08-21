@@ -2,7 +2,6 @@ import 'package:basic_flutter/Place/ui/screens/home_trips.dart';
 import 'package:basic_flutter/User/ui/screens/profile_trips.dart';
 import 'package:basic_flutter/Place/ui/screens/search_trips.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class AppTrips extends StatefulWidget {
   const AppTrips({Key? key}) : super(key: key);

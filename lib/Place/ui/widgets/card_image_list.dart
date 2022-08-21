@@ -1,11 +1,22 @@
+import 'package:basic_flutter/Place/model/place.dart';
 import 'package:basic_flutter/Place/ui/widgets/card_image.dart';
 import 'package:basic_flutter/User/bloc/bloc_user.dart';
+import 'package:basic_flutter/User/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
-class CardImageList extends StatelessWidget {
-  const CardImageList({Key? key}) : super(key: key);
+class CardImageList extends StatefulWidget {
+  final User user;
+  const CardImageList({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
+  @override
+  State<CardImageList> createState() => _CardImageListState();
+}
+
+class _CardImageListState extends State<CardImageList> {
   @override
   Widget build(BuildContext context) {
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
@@ -27,7 +38,7 @@ class CardImageList extends StatelessWidget {
               );
             case ConnectionState.active:
             case ConnectionState.done:
-              return listViewPlaces(userBloc.buildPlaces(snapshot.data.docs));
+              return listViewPlaces(userBloc.buildPlaces(snapshot.data.docs, widget.user));
             default:
               return Center(
                 child: CircularProgressIndicator(),
@@ -36,19 +47,29 @@ class CardImageList extends StatelessWidget {
         },
       ),
     );
-    // child: ListView(
-    //   padding: EdgeInsets.all(25.0),
-    //   scrollDirection: Axis.horizontal,
-    //   children: <Widget>[
-    //   ]
-    // )
   }
 
-  Widget listViewPlaces(List<CardImageWithFabIcon> placesCard) {
+  Widget listViewPlaces(List<Place> places) {
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+
+    void setLiked(Place place) {
+      setState(() {
+        place.liked = !place.liked;
+        userBloc.likePlace(place, widget.user.uid);
+      });
+    }
     return ListView(
       padding: EdgeInsets.all(25.0),
       scrollDirection: Axis.horizontal,
-      children: placesCard,
+      children: places.map((Place place) {
+        return CardImageWithFabIcon(
+          pathImage: place.uriImage, 
+          height: 300.0, 
+          width: 250.0, 
+          onPress: () => setLiked(place), 
+          iconData: place.liked ? Icons.favorite : Icons.favorite_border,
+        );
+      }).toList(),
     );
   }
 }

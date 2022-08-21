@@ -30,13 +30,15 @@ class UserBloc extends Bloc {
       _cloudFirestoreRepository.updatePlaceDataFirestore(place);
   Stream<QuerySnapshot> placesListStream() =>
       _cloudFirestoreRepository.placesListStream();
-  List<CardImageWithFabIcon> buildPlaces(
-          List<DocumentSnapshot> placesListSnapshot) =>
-      _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
+  List<Place> buildPlaces(
+          List<DocumentSnapshot> placesListSnapshot, Model.User user) =>
+      _cloudFirestoreRepository.buildPlaces(placesListSnapshot, user);
   List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> querySnapshot) =>
       _cloudFirestoreRepository.buildMyPlaces(querySnapshot);
   Stream<QuerySnapshot> getPlacesListStreamByUserId(String uid) =>
       _cloudFirestoreRepository.getPlacesListStreamByUserId(uid);
+  Future likePlace(Place place, String userId) =>
+      _cloudFirestoreRepository.likePlace(place, userId);
 
   final _firebaseStorageARepository = FirebaseStorageRepository();
   Future<UploadTask> uploadFile(String path, File image) =>
