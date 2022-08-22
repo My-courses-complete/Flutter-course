@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:basic_flutter/Place/model/place.dart';
@@ -43,6 +44,11 @@ class UserBloc extends Bloc {
   final _firebaseStorageARepository = FirebaseStorageRepository();
   Future<UploadTask> uploadFile(String path, File image) =>
       _firebaseStorageARepository.uploadFile(path, image);
+
+  StreamController placeSelectedStreamController = StreamController();
+
+  Stream get placeSelectedStream => placeSelectedStreamController.stream;
+  StreamSink get placeSelectedSink => placeSelectedStreamController.sink;
 
   signOut() {
     _auth_repository.signOut();
